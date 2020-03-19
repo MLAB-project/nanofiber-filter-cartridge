@@ -9,8 +9,8 @@ So = 51; // šířka otvoru pro filtr
 Vo = 20; // výška prostoru pro filtr
 
 // Okraje
-Ox = 3; // Tloušťka stěny v ose X
-Oy = 3; // Tloušťka stěny v ose Y
+Ox = 1; // Tloušťka stěny v ose X
+Oy = 1; // Tloušťka stěny v ose Y
 
 // Vnější rozměry dílu
 D = Do + 2*Ox; // celková délka dílu
@@ -61,15 +61,15 @@ T4 = 1;
 module Obal(Do, So, Vo, D, S, V) {
     Ox = (D - Do)/2;
     Oy = (S - So)/2;
-    
+
     difference(){
         translate([-Ox,-Oy,0])
-        cube([D, S, V]); 
-        cube([Do, So, Vo+1]);}    
-    
+        cube([D, S, V]);
+        cube([Do, So, Vo+1]);}
+
     }
-  
-    
+
+
 module hc_hexagon(size, height) {
 	box_width = size/1.75;
 	for (r = [-60, 0, 60]) rotate([0,0,r]) cube([box_width, size, height], true);
@@ -87,8 +87,8 @@ module hc_column(length, height, cell_size, wall_thickness) {
 module honeycomb (length, width, height, cell_size, wall_thickness) {
     length = length - 6*wall_thickness;
     width = width - 6*wall_thickness;
- 
-   
+
+
             no_of_rows = floor(1.75 * length / (cell_size + wall_thickness)) ;
 
             tr_mod = cell_size + wall_thickness;
@@ -103,15 +103,15 @@ module honeycomb (length, width, height, cell_size, wall_thickness) {
     hc_column(width, height+20, cell_size, wall_thickness);
                         }
             }
-     
+
 }
 
 module PravouhlaMriz(length, width, height, cell_size1, cell_size2, wall_thickness){
-    
+
     A = floor(length/(cell_size1));
     B = floor(width/(cell_size2));
-    
-   
+
+
  for (i = [0 : A+1]) {
      translate([i * (cell_size1)- wall_thickness/2, 0, 0])
      cube([wall_thickness, width+wall_thickness, height]);
@@ -121,33 +121,36 @@ module PravouhlaMriz(length, width, height, cell_size1, cell_size2, wall_thickne
      translate([0, i * (cell_size2) - wall_thickness, 0])
      cube([length+4*wall_thickness, wall_thickness, height]);
                         }
-    
-    }
-    
-    
 
+    }
+
+
+
+/*
 rotate([0,180,0]){
-translate([0,0,P-HTh-HTpm])
-honeycomb(Do+2,So+2,HTh,STh,TTh);  // Tenká vrstva 
+  translate([0,0,P-HTh-HTpm])
+    honeycomb(Do+2,So+2,HTh,STh,TTh);  // Tenká vrstva
 
 translate([0,0,P-HTpm])
-PravouhlaMriz(Do,So,HTpm,sqrt(3)/2*(STh+TTh),STh/2 + TTh/2, TTh); // Tenká vrstva 
-    
+PravouhlaMriz(Do,So,HTpm,sqrt(3)/2*(STh+TTh),STh/2 + TTh/2, TTh); // Tenká vrstva
+
 translate([0,0,P])
-honeycomb(D,S,H0,S0,T0);  
+honeycomb(D,S,H0,S0,T0);
 
 translate([0,0,P+H0])
-PravouhlaMriz(Do-2,So,H0,sqrt(3)/2*(S0+T0),S0/2 + T0/2, T0); 
-    
+PravouhlaMriz(Do-2,So,H0,sqrt(3)/2*(S0+T0),S0/2 + T0/2, T0);
+
 translate([0,0,P+H0+H1])
 honeycomb(D+1,S,H2,S2,T2);
-    
+
+
 translate([0,0, P+H0+H1+H2])
 PravouhlaMriz(Do-2,So,H3,S3,S3,T3);
+*/
 
 translate([0,0,P+H0+H1+H2+H3])
 honeycomb(D+1,S,H4,S4,T4);
 
 
-Obal(Do, So, Vo, D, S, V); 
+Obal(Do, So, Vo, D, S, V);
 }
