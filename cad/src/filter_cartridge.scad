@@ -117,7 +117,7 @@ intersection(){
         translate([Do,So/2,1.2])
             Palisada(Do, So, B1, So+0.5, R, A1);
         }
-  Zebra(Do, So+0.5, 0.4, 15, 0.4);      
+  Zebra(Do, So+0.5, 0.5, 15, 0.3);      
     
     }
     
