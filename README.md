@@ -14,3 +14,6 @@ Bližší informace o použití těchto filtrů jsou v [tomto google dokumentu](
 
 
 ![Aktuální konstrukce filtrové vložky](/doc/img/filter_cartridge.png)
+
+
+[3D model filtrové cartridge](/cad/stl/filter_cartridge.stl)
