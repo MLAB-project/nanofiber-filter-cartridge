@@ -43,7 +43,7 @@ module Obal(Do, So, Vo, D, S, V) {
       translate([-Ox,-Oy,0])
         cube([D, S, V]);
       translate([0,0,-1])
-        cube([Do, So, Vo]);}
+        cube([Do, So, Vo+2]);}
     }
 
 
@@ -123,7 +123,7 @@ module filter_cartridge()
                 translate([Do,So/2,1.2])
                     Palisada(Do, So, B1, So+0.5, R, A1);
                 }
-          Zebra(Do, So+0.5, 0.5, 15, 0.3); // Popisek
+          Zebra(Do, So+0.5, 0.5, 15, 0.3); 
         }
 
       translate([0,0,-P])
